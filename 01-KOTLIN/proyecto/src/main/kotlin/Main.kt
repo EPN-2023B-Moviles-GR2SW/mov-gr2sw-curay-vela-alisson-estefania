@@ -46,6 +46,66 @@ fun main(args: Array<String>) {
     val sumaUno = Suma(1,1)
     val sumaDos = Suma(null, 1)
     val sumaTres = Suma(1, null)
+    val sumaCuatro = Suma(null, null)
+    sumaUno.sumar()
+    sumaDos.sumar()
+    sumaTres.sumar()
+    sumaCuatro.sumar()
+    println(Suma.pi)
+    println(Suma.elavarCuadrado(2))
+    println(Suma.historialSumas)
+
+    // Arreglo Estatico
+    val arregloEstatico: Array<Int> = arrayOf<Int>(1, 2, 3)
+    println(arregloEstatico)
+
+    // Arreglo Dinámico
+    val arregloDinamico: ArrayList<Int> = arrayListOf<Int>(
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10
+    )
+    println(arregloDinamico)
+    arregloDinamico.add(11)
+    arregloDinamico.add(12)
+    println(arregloDinamico)
+
+    // FOR EACH -> Unit
+    // Iterar un arreglo
+    val respuestaForEch: Unit = arregloDinamico
+        .forEach{valorActual: Int ->
+            println("Valor Actual: ${valorActual}")
+        }
+    // it (en inglés eso) significa el elemento iterado
+    arregloDinamico.forEach{ println("Valor Actual: ${it}") }
+    arregloEstatico.forEachIndexed { indice: Int, valorActual: Int ->
+        println("Valor Actual ${valorActual} Indice: ${indice}")
+    }
+    println(respuestaForEch)
+
+    // Map -> Muta el arreglo (Cambia el arreglo)
+    // 1) Enviamos el nuevo valor de la iteacion
+    // 2) Nos deveulve en un NUEVO ARREGLO con los valores modificados
+    val respuestaMap: List<Double> = arregloDinamico
+        .map { valorActual: Int ->
+            return@map valorActual.toDouble()+100.00
+        }
+    printl(respuestaMap)
+    val respuestaMapDos = arregloDinamico.map { it + 15 }
+
+
+    // Filter -> FILTRAR EL ARREGLO
+    // 1) Devolver una expresión (TRUE o FALSE)
+    // 2) Nuevo arreglo filtrado
+    val respuestaFilter: List<Int> = arregloDinamico
+        .filter { valorActual: Int ->
+            // Expresion Condicion
+            val mayoresACinco: Boolean = valorActual > 5
+            return@filter mayoresACinco
+        }
+    val respuestaFilterDos = arregloDinamico.filter {
+        it <= 5
+    }
+    println(respuestaFilter)
+    println(respuestaFilterDos)
 }
 //void -> Unit
 fun imprimirNombre(nombre: String): Unit {
@@ -123,4 +183,31 @@ class Suma ( // Constructor primario suma
         uno,
         if(dos == null) 0 else dos,
     )
+
+    constructor(//cuarto constructor
+        uno: Int?, // parámetros
+        dos: Int? //parametros
+    ) : this( // llamada constructor primario
+        if (uno == null) 0 else uno,
+        if (dos == null) 0 else uno
+    )
+    // punlic por defecto o usar private o protected
+    public fun sumar(): Int {
+        val total = numeroUno + numeroDos
+        //suma.agregarHistorial(total)
+        agregarHistorial(total)
+        return total
+    }
+    // Atributos y métodos "compartidos"
+    companion object{
+        // entre las instancias
+        val pi = 3.14
+        fun elavarCuadrado(num: Int): Int {
+            return num * num
+        }
+        val historialSumas = arrayListOf<Int>()
+        fun agregarHistorial(valorNuevaSuma: Int){
+            historialSumas.add(valorNuevaSuma)
+        }
+    }
 }
