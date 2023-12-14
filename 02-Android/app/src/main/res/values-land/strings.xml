@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="saludo">Buenos noches </string>
+    <string name="saludo">Buenas noches </string>
+    <string name="saludo_en">Evening</string>
 </resources>
