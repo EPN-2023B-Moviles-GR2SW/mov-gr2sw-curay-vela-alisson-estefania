@@ -1,65 +1,50 @@
 // Archivo: Main.kt
 import java.io.File
+import java.text.SimpleDateFormat
+import java.util.Date
+
 fun main() {
-    // Cargar universidades y estudiantes desde archivos
     val universidades = cargarUniversidades()
     val estudiantes = cargarEstudiantes(universidades)
-    // Menú principal
+
     while (true) {
-        println("Menú:")
-        println("a. Crear nueva universidad")
-        println("b. Editar información de universidad")
-        println("c. Eliminar universidad (universidades, estudiantes)")
-        println("d. Mostrar universidades")
-        println("e. Crear nuevo estudiante")
-        println("f. Editar información de estudiante")
-        println("g. Eliminar estudiante")
-        println("h. mostrar estudiante")
-        println("i. Mostrar estudiantes por universidad")
-        println("j. Salir")
-        print("Ingrese su elección: ")
+        mostrarMenu()
 
         when (readLine()?.toString()) {
-            "a" -> {
-                crearNuevaUniversidad(universidades)
-            }
-            "b" -> {
-                editarUniversidad(universidades)
-            }
-            "c" -> {
-                eliminarUniversidad(universidades, estudiantes)
-            }
-            "d" -> {
-                mostrarUniversidades(universidades)
-            }
-            "e" -> {
-                crearNuevoEstudiante(universidades, estudiantes)
-            }
-            "f" -> {
-                editarEstudiante(estudiantes)
-            }
-            "g" -> {
-                eliminarEstudiante(estudiantes, universidades)
-            }
-            "h" -> {
-                mostrarEstudiantes(estudiantes)
-            }
-            "i" -> {
-                mostrarEstudiantesPorUniversidad(universidades)
-            }
+            "a" -> crearNuevaUniversidad(universidades)
+            "b" -> editarUniversidad(universidades)
+            "c" -> eliminarUniversidad(universidades, estudiantes)
+            "d" -> mostrarUniversidades(universidades)
+            "e" -> crearNuevoEstudiante(universidades, estudiantes)
+            "f" -> editarEstudiante(estudiantes)
+            "g" -> eliminarEstudiante(estudiantes, universidades)
+            "h" -> mostrarEstudiantes(estudiantes)
+            "i" -> mostrarEstudiantesPorUniversidad(universidades)
             "j" -> {
-                // Guardar universidades y estudiantes en archivos antes de salir
                 guardarDatos(universidades.map { it.toString() }, "universidades.txt")
                 guardarDatos(estudiantes.map { it.toString() }, "estudiantes.txt")
                 return
             }
-            else -> {
-                println("Opción no válida. Intente de nuevo.")
-            }
+            else -> println("Opción no válida. Intente de nuevo.")
         }
     }
 }
+fun mostrarMenu() {
+    println("Menú:")
+    println("a. Crear nueva universidad")
+    println("b. Editar información de universidad")
+    println("c. Eliminar universidad (universidades, estudiantes)")
+    println("d. Mostrar universidades")
+    println("e. Crear nuevo estudiante")
+    println("f. Editar información de estudiante")
+    println("g. Eliminar estudiante")
+    println("h. Mostrar lista de estudiantes")
+    println("i. Mostrar estudiantes por universidad")
+    println("j. Salir")
+    print("Ingrese su elección: ")
+}
 // En la función cargarUniversidades
+
 fun cargarUniversidades(): MutableList<Universidad> {
     val universidades = mutableListOf<Universidad>()
     val datos = Entidad("universidades.txt", emptyList()).leerDesdeArchivo()
@@ -67,7 +52,8 @@ fun cargarUniversidades(): MutableList<Universidad> {
         val regex = Regex("Universidad\\(id=(\\d+), nombre=(.*), ubicacion=(.*), fechaFundacion=(.*)\\)")
         val matchResult = regex.find(linea)
         if (matchResult != null) {
-            val (id, nombre, ubicacion, fechaFundacion) = matchResult.destructured
+            val (id, nombre, ubicacion, fechaFundacionStr) = matchResult.destructured
+            val fechaFundacion = SimpleDateFormat("yyyy-MM-dd").parse(fechaFundacionStr) ?: Date()
             val universidad = Universidad(id.toInt(), nombre, ubicacion, fechaFundacion)
             universidades.add(universidad)
         } else {
@@ -85,7 +71,8 @@ fun cargarEstudiantes(universidades: List<Universidad>): MutableList<Estudiante>
         val regex = Regex("Estudiante\\(nombre=(.*), edad=(\\d+), fechaIngreso=(.*), promedioCalificaciones=(.*), esEstudianteActivo=(.*), idUniversidad=(\\d+)\\)")
         val matchResult = regex.find(linea)
         if (matchResult != null) {
-            val (nombre, edad, fechaIngreso, promedioCalificaciones, esEstudianteActivo, idUniversidad) = matchResult.destructured
+            val (nombre, edad, fechaIngresoStr, promedioCalificaciones, esEstudianteActivo, idUniversidad) = matchResult.destructured
+            val fechaIngreso = SimpleDateFormat("yyyy-MM-dd").parse(fechaIngresoStr) ?: Date()
             val estudiante = Estudiante(
                 nombre,
                 edad.toInt(),
@@ -102,13 +89,15 @@ fun cargarEstudiantes(universidades: List<Universidad>): MutableList<Estudiante>
     }
     return estudiantes
 }
+
 fun crearNuevaUniversidad(universidades: MutableList<Universidad>) {
     print("Ingrese el nombre de la universidad: ")
     val nombre = readLine() ?: ""
     print("Ingrese la ubicación: ")
     val ubicacion = readLine() ?: ""
-    print("Ingrese la fecha de fundación: ")
-    val fechaFundacion = readLine() ?: ""
+    print("Ingrese la fecha de fundación (Formato: yyyy-MM-dd): ")
+    val fechaFundacionStr = readLine() ?: ""
+    val fechaFundacion = SimpleDateFormat("yyyy-MM-dd").parse(fechaFundacionStr) ?: Date()
     val nuevaUniversidad = Universidad(universidades.size + 1, nombre, ubicacion, fechaFundacion)
     universidades.add(nuevaUniversidad)
 }
@@ -124,23 +113,30 @@ fun crearNuevoEstudiante(universidades: List<Universidad>, estudiantes: MutableL
         val nombre = readLine() ?: ""
         print("Ingrese la edad: ")
         val edad = readLine()?.toIntOrNull() ?: 0
-        print("Ingrese la fecha de ingreso: ")
-        val fechaIngreso = readLine() ?: ""
+        print("Ingrese la fecha de ingreso (Formato: yyyy-MM-dd): ")
+        val fechaIngresoStr = readLine() ?: ""
+        val fechaIngreso = SimpleDateFormat("yyyy-MM-dd").parse(fechaIngresoStr) ?: Date()
         print("Ingrese el promedio de calificaciones: ")
         val promedioCalificaciones = readLine()?.toDoubleOrNull() ?: 0.0
         print("¿Está activo? (true/false): ")
         val esEstudianteActivo = readLine()?.toBoolean() ?: false
 
-        val nuevoEstudiante = Estudiante(
-            nombre,
-            edad,
-            fechaIngreso,
-            promedioCalificaciones,
-            esEstudianteActivo,
-            idUniversidad
-        )
-        estudiantes.add(nuevoEstudiante)
-        universidadSeleccionada.estudiantes.add(nuevoEstudiante)
+        // Verificar si el estudiante ya pertenece a otra universidad
+        if (estudiantes.any { it.nombre == nombre && it.idUniversidad != idUniversidad }) {
+            println("Error: El estudiante ya pertenece a otra universidad. No se permite registrar en dos universidades diferentes.")
+        } else {
+            val nuevoEstudiante = Estudiante(
+                nombre,
+                edad,
+                fechaIngreso,
+                promedioCalificaciones,
+                esEstudianteActivo,
+                idUniversidad
+            )
+            estudiantes.add(nuevoEstudiante)
+            universidadSeleccionada.estudiantes.add(nuevoEstudiante)
+            println("Estudiante registrado correctamente en ${universidadSeleccionada.nombre}.")
+        }
     } else {
         println("Universidad no válida.")
     }
@@ -164,8 +160,13 @@ fun editarEstudiante(estudiantes: List<Estudiante>) {
         print("Nueva edad: ")
         val nuevaEdad = readLine()?.toIntOrNull() ?: estudianteSeleccionado.edad
 
-        print("Nueva fecha de ingreso: ")
-        val nuevaFechaIngreso = readLine() ?: estudianteSeleccionado.fechaIngreso
+        print("Nueva fecha de ingreso (Formato: yyyy-MM-dd): ")
+        val nuevaFechaIngresoStr = readLine()
+        val nuevaFechaIngreso = if (nuevaFechaIngresoStr != null) {
+            SimpleDateFormat("yyyy-MM-dd").parse(nuevaFechaIngresoStr) ?: estudianteSeleccionado.fechaIngreso
+        } else {
+            estudianteSeleccionado.fechaIngreso
+        }
 
         print("Nuevo promedio de calificaciones: ")
         val nuevoPromedio = readLine()?.toDoubleOrNull() ?: estudianteSeleccionado.promedioCalificaciones
@@ -188,6 +189,7 @@ fun editarEstudiante(estudiantes: List<Estudiante>) {
     }
 }
 
+
 // Nueva función para editar la información de una universidad
 fun editarUniversidad(universidades: List<Universidad>) {
     println("Seleccione la universidad que desea editar:")
@@ -207,8 +209,13 @@ fun editarUniversidad(universidades: List<Universidad>) {
         print("Nueva ubicación: ")
         val nuevaUbicacion = readLine() ?: universidadSeleccionada.ubicacion
 
-        print("Nueva fecha de fundación: ")
-        val nuevaFechaFundacion = readLine() ?: universidadSeleccionada.fechaFundacion
+        print("Nueva fecha de fundación (Formato: yyyy-MM-dd): ")
+        val nuevaFechaFundacionStr = readLine()
+        val nuevaFechaFundacion = if (nuevaFechaFundacionStr != null) {
+            SimpleDateFormat("yyyy-MM-dd").parse(nuevaFechaFundacionStr) ?: universidadSeleccionada.fechaFundacion
+        } else {
+            universidadSeleccionada.fechaFundacion
+        }
 
         // Actualizar la información de la universidad
         universidadSeleccionada.apply {
@@ -278,25 +285,28 @@ fun mostrarEstudiantes(estudiantes: List<Estudiante>) {
         println("$index. ${estudiante.nombre}")
     }
 }
-// Nueva función para mostrar estudiantes agrupados por universidad
-// Nueva función para mostrar estudiantes por universidad
+// Función para mostrar estudiantes por universidad
 fun mostrarEstudiantesPorUniversidad(universidades: List<Universidad>) {
     println("Estudiantes agrupados por Universidad:")
     for (universidad in universidades) {
         println("-----------------------------------")
-        universidad.mostrarInformacion()
-        println("Estudiantes:")
-        for (estudiante in universidad.estudiantes) {
-            println(" - Nombre: ${estudiante.nombre}, Edad: ${estudiante.edad}, " +
-                    "Fecha de Ingreso: ${estudiante.fechaIngreso}, Promedio: ${estudiante.promedioCalificaciones}, " +
-                    "Activo: ${estudiante.esEstudianteActivo}")
+        // Verificar si la universidad aún existe
+        if (universidades.contains(universidad)) {
+            universidad.mostrarInformacion()
+            println("Estudiantes:")
+            for (estudiante in universidad.estudiantes) {
+                println(" - Nombre: ${estudiante.nombre}, Edad: ${estudiante.edad}, " +
+                        "Fecha de Ingreso: ${estudiante.fechaIngreso}, " +
+                        "Promedio: ${estudiante.promedioCalificaciones}, " +
+                        "Activo: ${estudiante.esEstudianteActivo}")
+            }
+        } else {
+            println("Información no disponible.")
         }
         println("\n")
     }
 }
-
-// En la función guardarDatos
-
+// Función guardarDatos
 fun guardarDatos(datos: List<String>, nombreArchivo: String) {
     File(nombreArchivo).writeText(datos.joinToString("\n"))
 }

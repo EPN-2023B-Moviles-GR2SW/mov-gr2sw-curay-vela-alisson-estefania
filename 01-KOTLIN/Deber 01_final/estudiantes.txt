@@ -1,0 +1,2 @@
+Estudiante(nombre=EstudianteB, edad=22, fechaIngreso=Mon Jan 16 00:00:00 ECT 2017, promedioCalificaciones=7.2, esEstudianteActivo=false, idUniversidad=2)
+Estudiante(nombre=Alisson Curay, edad=24, fechaIngreso=Mon Dec 03 00:00:00 ECT 2018, promedioCalificaciones=9.0, esEstudianteActivo=true, idUniversidad=4)

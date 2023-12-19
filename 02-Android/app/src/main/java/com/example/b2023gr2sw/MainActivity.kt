@@ -1,5 +1,6 @@
 package com.example.b2023gr2sw
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
@@ -13,11 +14,19 @@ class MainActivity : AppCompatActivity() {
             //TO DO
             irActividad(ACicloVida::class.java)
         }
+        val botonListView = findViewById<Button>(R.id.btn_ir_list_view)
+        botonListView.setOnClickListener {
+            //TO DO
+            irActividad(BListView::class.java)
+        }
 
     }
     fun irActividad(
         clase: Class<*>
     ) {
+        val intent = Intent(this, clase)
+        startActivity(intent)
+
     }
 }
 
