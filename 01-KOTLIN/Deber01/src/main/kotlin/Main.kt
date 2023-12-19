@@ -2,6 +2,7 @@
 
 import java.io.File
 import java.io.FileNotFoundException
+import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.atomic.AtomicReference
@@ -320,6 +321,7 @@ fun editarUniversidad(universidades: List<Universidad>) {
 
 
 // Nuevas funciones para CRUD de universidades
+// Nuevas funciones para CRUD de universidades
 fun eliminarUniversidad(universidades: MutableList<Universidad>, estudiantes: MutableList<Estudiante>) {
     println("Seleccione la universidad que desea eliminar:")
     mostrarUniversidades(universidades)
@@ -337,6 +339,9 @@ fun eliminarUniversidad(universidades: MutableList<Universidad>, estudiantes: Mu
         universidades.removeAt(indiceUniversidad)
 
         println("Universidad eliminada correctamente junto con ${estudiantesAsociados.size} estudiantes asociados.")
+
+        // Guardar los cambios en el archivo
+        guardarDatos(universidades, estudiantes)
     } else {
         println("Índice de universidad no válido.")
     }
@@ -355,6 +360,7 @@ fun mostrarUniversidades(universidades: List<Universidad>) {
 }
 
 // Nuevas funciones para CRUD de estudiantes
+// Nuevas funciones para CRUD de estudiantes
 fun eliminarEstudiante(estudiantes: MutableList<Estudiante>, universidades: List<Universidad>) {
     println("Seleccione el estudiante que desea eliminar:")
     mostrarEstudiantes(estudiantes)
@@ -363,14 +369,18 @@ fun eliminarEstudiante(estudiantes: MutableList<Estudiante>, universidades: List
     if (indiceEstudiante != null && indiceEstudiante in 0 until estudiantes.size) {
         val estudianteSeleccionado = estudiantes[indiceEstudiante]
 
-        // Eliminar el estudiante de la lista general
-        estudiantes.removeAt(indiceEstudiante)
-        println("Estudiante eliminado correctamente.")
-
         // Eliminar el estudiante de la lista de la universidad
         for (universidad in universidades) {
-            universidad.estudiantes.remove(estudianteSeleccionado)
+            if (universidad.estudiantes.contains(estudianteSeleccionado)) {
+                universidad.estudiantes.remove(estudianteSeleccionado)
+                break
+            }
         }
+
+        // Eliminar el estudiante de la lista general
+        estudiantes.remove(estudianteSeleccionado)
+
+        println("Estudiante eliminado correctamente.")
 
         // Guardar los cambios en el archivo
         guardarDatos(universidades, estudiantes)
@@ -378,6 +388,7 @@ fun eliminarEstudiante(estudiantes: MutableList<Estudiante>, universidades: List
         println("Índice de estudiante no válido.")
     }
 }
+
 
 
 
@@ -424,7 +435,7 @@ fun mostrarEstudiantesPorUniversidad(universidades: List<Universidad>) {
 fun guardarDatos(universidades: List<Universidad>, estudiantes: List<Estudiante>) {
     val formatoFecha = DateTimeFormatter.ofPattern("yyyy-MM-dd")
 
-    // Filtrar datos existentes que no coinciden con los nuevos
+    // Convertir datos de universidades y estudiantes a líneas de texto
     val datosTotalesUniversidades = universidades.map { universidad ->
         "${universidad.id},${universidad.nombre},${universidad.ubicacion}," +
                 "${formatoFecha.format(universidad.fechaFundacion)},${universidad.dimension}"
@@ -437,38 +448,22 @@ fun guardarDatos(universidades: List<Universidad>, estudiantes: List<Estudiante>
                 "${estudiante.esEstudianteActivo},${estudiante.idUniversidad}"
     }
 
-    // Leer datos existentes
-    val datosUniversidadesExistente = try {
-        File("universidades.txt").readLines()
-    } catch (e: FileNotFoundException) {
-        emptyList()
-    }
+    // Guardar datos en archivos
+    guardarEnArchivo("universidades.txt", datosTotalesUniversidades)
+    guardarEnArchivo("estudiantes.txt", datosTotalesEstudiantes)
+}
 
-    val datosEstudiantesExistente = try {
-        File("estudiantes.txt").readLines()
-    } catch (e: FileNotFoundException) {
-        emptyList()
-    }
-
-    // Filtrar datos existentes que no coinciden con los nuevos
-    val datosUniversidadesFiltrados = datosUniversidadesExistente.filterNot { lineaExistente ->
-        datosTotalesUniversidades.any { nuevaLinea -> nuevaLinea == lineaExistente }
-    }
-
-    val datosEstudiantesFiltrados = datosEstudiantesExistente.filterNot { lineaExistente ->
-        datosTotalesEstudiantes.any { nuevaLinea ->
-            // Comparación robusta, eliminando espacios en blanco alrededor
-            nuevaLinea.trim() == lineaExistente.trim()
+fun guardarEnArchivo(nombreArchivo: String, lineas: List<String>) {
+    try {
+        File(nombreArchivo).bufferedWriter().use { writer ->
+            lineas.forEach { linea ->
+                writer.write(linea)
+                writer.newLine()
+            }
         }
+    } catch (e: IOException) {
+        println("Error al escribir en el archivo $nombreArchivo: ${e.message}")
     }
-
-    // Concatenar datos filtrados y nuevos
-    val datosFinalesUniversidades = datosUniversidadesFiltrados + datosTotalesUniversidades
-    val datosFinalesEstudiantes = datosEstudiantesFiltrados + datosTotalesEstudiantes
-
-    // Guardar datos totales
-    File("universidades.txt").writeText(datosFinalesUniversidades.joinToString("\n").trimStart())
-    File("estudiantes.txt").writeText(datosFinalesEstudiantes.joinToString("\n").trimStart())
 }
 
 

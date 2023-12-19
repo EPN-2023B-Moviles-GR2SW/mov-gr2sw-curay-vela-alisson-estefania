@@ -26,26 +26,26 @@
       <change beforePath="$PROJECT_DIR$/../Deber 01_final/src/main/kotlin/Main.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Deber 01_final/src/main/kotlin/Universidad.kt" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../Deber 01_final/universidades.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/.idea/gradle.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/.idea/kotlinc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/build.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/estudiantes.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/gradle.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/gradlew" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/gradlew.bat" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/settings.gradle.kts" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/src/main/kotlin/Entidad.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/src/main/kotlin/Estudiante.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/src/main/kotlin/Main.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/src/main/kotlin/Universidad.kt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Deber01_Final/universidades.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Deber01/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../Deber01/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/estudiantes.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/settings.gradle.kts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Entidad.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Estudiante.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Main.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/Universidad.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/universidades.txt" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,18 +56,6 @@
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
     </projectState>
-  </component>
-  <component name="ExternalProjectsManager">
-    <system id="GRADLE">
-      <state>
-        <projects_view>
-          <tree_state>
-            <expand />
-            <select />
-          </tree_state>
-        </projects_view>
-      </state>
-    </system>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -92,6 +80,7 @@
     &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;android.gradle.sync.needed&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;last_opened_file_path&quot;: &quot;D:/Universidad/Septimo/Moviles/mov-gr2sw-curay-vela-alisson-estefania/01-KOTLIN/Deber01&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -135,9 +124,9 @@
       <workItem from="1702789521922" duration="441000" />
       <workItem from="1702789990186" duration="4225000" />
       <workItem from="1702794263077" duration="1748000" />
-      <workItem from="1702991883201" duration="13000" />
-      <workItem from="1702991975562" duration="126000" />
-      <workItem from="1702992262916" duration="2600000" />
+      <workItem from="1702991617229" duration="151000" />
+      <workItem from="1702991807587" duration="37000" />
+      <workItem from="1702991873466" duration="8000" />
     </task>
     <servers />
   </component>
