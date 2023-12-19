@@ -23,7 +23,7 @@ class BListView : AppCompatActivity() {
         // escuchar al botón
         val botonAnadirListView = findViewById<Button>(R.id.btn_anadir_list_view)
         botonAnadirListView.setOnClickListener{
-            //click
+            //click, de momento solo va a escuchar al botón
         }
 
 
