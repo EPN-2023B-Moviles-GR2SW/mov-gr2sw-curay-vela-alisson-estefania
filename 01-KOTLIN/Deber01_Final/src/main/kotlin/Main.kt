@@ -318,9 +318,6 @@ fun editarUniversidad(universidades: List<Universidad>) {
         println("Índice de universidad no válido.")
     }
 }
-
-
-// Nuevas funciones para CRUD de universidades
 // Nuevas funciones para CRUD de universidades
 fun eliminarUniversidad(universidades: MutableList<Universidad>, estudiantes: MutableList<Estudiante>) {
     println("Seleccione la universidad que desea eliminar:")
@@ -358,8 +355,6 @@ fun mostrarUniversidades(universidades: List<Universidad>) {
         println("No hay universidades para mostrar.")
     }
 }
-
-// Nuevas funciones para CRUD de estudiantes
 // Nuevas funciones para CRUD de estudiantes
 fun eliminarEstudiante(estudiantes: MutableList<Estudiante>, universidades: List<Universidad>) {
     println("Seleccione el estudiante que desea eliminar:")
@@ -388,11 +383,6 @@ fun eliminarEstudiante(estudiantes: MutableList<Estudiante>, universidades: List
         println("Índice de estudiante no válido.")
     }
 }
-
-
-
-
-
 fun mostrarEstudiantes(estudiantes: List<Estudiante>) {
     println("Lista de Estudiantes:")
 
