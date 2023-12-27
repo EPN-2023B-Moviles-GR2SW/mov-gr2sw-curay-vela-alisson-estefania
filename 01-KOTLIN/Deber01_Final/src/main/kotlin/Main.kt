@@ -1,14 +1,11 @@
 // Alisson Curay
 
 import java.io.File
-import java.io.FileNotFoundException
 import java.io.IOException
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.util.concurrent.atomic.AtomicReference
-import java.text.SimpleDateFormat
 import java.time.format.DateTimeParseException
-import java.util.Date
 
 fun main() {
     val universidades = cargarUniversidades()
@@ -161,7 +158,7 @@ fun crearNuevaUniversidad(universidades: MutableList<Universidad>) {
     try {
         val fechaFundacion = LocalDate.parse(fechaFundacionStr, formatter)
 
-        print("Ingrese la dimensión (Formato: m2): ")
+        print("Ingrese el área que ocupa (Formato: m2): ")
         val dimension = readLine()?.toDoubleOrNull() ?: 0.0
         val nuevaUniversidad = Universidad(universidades.size + 1, nombre, ubicacion, AtomicReference(fechaFundacion), dimension)
         universidades.add(nuevaUniversidad)
@@ -190,7 +187,7 @@ fun crearNuevoEstudiante(universidades: List<Universidad>, estudiantes: MutableL
         try {
             val fechaIngreso = LocalDate.parse(fechaIngresoStr, formatter)
 
-            print("Ingrese el promedio de calificaciones: ")
+            print("Ingrese el promedio de calificaciones (nota sobre 10): ")
             val promedioCalificaciones = readLine()?.toDoubleOrNull() ?: 0.0
             print("¿Está activo? (true/false): ")
             val esEstudianteActivo = readLine()?.toBoolean() ?: false
@@ -274,8 +271,6 @@ fun editarEstudiante(estudiantes: List<Estudiante>) {
     }
 }
 
-
-
 // Nueva función para editar la información de una universidad
 fun editarUniversidad(universidades: List<Universidad>) {
     println("Seleccione la universidad que desea editar:")
@@ -305,12 +300,15 @@ fun editarUniversidad(universidades: List<Universidad>) {
                 universidadSeleccionada.fechaFundacion
             }
         } ?: universidadSeleccionada.fechaFundacion
+        print("Nueva área que ocupa m2: ")
+        val nuevoDimension = readLine()?.toDoubleOrNull()?:  universidadSeleccionada.dimension
 
         // Actualizar la información de la universidad
         universidadSeleccionada.apply {
             nombre = nuevoNombre
             ubicacion = nuevaUbicacion
             fechaFundacion = nuevaFechaFundacion
+            dimension = nuevoDimension
         }
 
         println("Información de la universidad actualizada correctamente.")
@@ -343,7 +341,6 @@ fun eliminarUniversidad(universidades: MutableList<Universidad>, estudiantes: Mu
         println("Índice de universidad no válido.")
     }
 }
-
 fun mostrarUniversidades(universidades: List<Universidad>) {
     println("Lista de Universidades:")
 
@@ -371,7 +368,6 @@ fun eliminarEstudiante(estudiantes: MutableList<Estudiante>, universidades: List
                 break
             }
         }
-
         // Eliminar el estudiante de la lista general
         estudiantes.remove(estudianteSeleccionado)
 
@@ -394,7 +390,6 @@ fun mostrarEstudiantes(estudiantes: List<Estudiante>) {
         println("No hay estudiantes para mostrar.")
     }
 }
-
 // Función para mostrar estudiantes por universidad
 fun mostrarEstudiantesPorUniversidad(universidades: List<Universidad>) {
     println("Estudiantes agrupados por Universidad:")
@@ -419,7 +414,6 @@ fun mostrarEstudiantesPorUniversidad(universidades: List<Universidad>) {
         println("\n")
     }
 }
-
 // Función guardarDatos
 
 fun guardarDatos(universidades: List<Universidad>, estudiantes: List<Estudiante>) {

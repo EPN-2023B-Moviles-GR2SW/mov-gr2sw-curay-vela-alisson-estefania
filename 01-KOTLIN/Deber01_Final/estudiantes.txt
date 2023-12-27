@@ -1,2 +1,2 @@
 María López,25,2021-12-10,78.3,false,2
-Ana Perez,23,2022-11-05,82.7,false,2
+Alisson Curay,24,2018-09-12,9.0,true,2

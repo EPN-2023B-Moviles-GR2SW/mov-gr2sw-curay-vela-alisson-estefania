@@ -36,7 +36,7 @@ data class Universidad(
     override fun mostrarInformacion() {
         println("Nombre: $nombre")
         println("Ubicación: $ubicacion")
-        println("Dimensioón: $dimension")
+        println("Dimensión: ${dimension.toDouble()}")
         println("Fecha de Fundación: ${formatearFecha(fechaFundacion)}")
     }
     companion object {

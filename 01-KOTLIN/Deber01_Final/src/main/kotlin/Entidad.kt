@@ -2,12 +2,10 @@
 
 import java.io.File
 import java.text.ParseException
-import java.util.Date
-import java.util.concurrent.atomic.AtomicReference
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-open class Entidad(
+open class Entidad (
     val nombreArchivo: String,
     val campos: List<String>
 ) {
