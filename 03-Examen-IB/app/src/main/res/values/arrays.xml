@@ -1,3 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <array name="opciones_predefinidas">
+        <item>Activo</item>
+        <item>Inactivo</item>
+    </array>
 </resources>

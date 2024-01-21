@@ -1,11 +1,11 @@
 package com.example.examenib
 
-class BDDUniversidad (
+class Universidad (
     var nombre: String,
     var ubicacion: String,
     var fechaFundacion: String,
     var areaCobertura: Double,
-    var listaEstudiantes: ArrayList<BDDEstudiante>
+    var listaEstudiantes: ArrayList<Estudiante>
 ) {
     override fun toString(): String {
         return "${nombre}  ${ubicacion}  ${fechaFundacion}"

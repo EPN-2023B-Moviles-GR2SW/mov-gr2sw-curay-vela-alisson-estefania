@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "23104177203",
+    "project_id": "b2023-gr2sw-aecv",
+    "storage_bucket": "b2023-gr2sw-aecv.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23104177203:android:4d53db695099c7e4184f46",
+        "android_client_info": {
+          "package_name": "com.example.b2023gr2sw"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_v_U9N1mGu1Z3-sQBVlmsT9DshU45Hws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:23104177203:android:a9c646094bd73c2f184f46",
+        "android_client_info": {
+          "package_name": "com.example.examenib"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_v_U9N1mGu1Z3-sQBVlmsT9DshU45Hws"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

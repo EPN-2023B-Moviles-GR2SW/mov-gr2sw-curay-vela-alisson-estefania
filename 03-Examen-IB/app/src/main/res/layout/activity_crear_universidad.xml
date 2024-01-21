@@ -2,8 +2,96 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cons_crear_universidad"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".crearUniversidad">
+    android:background="#BFD6D6"
+    android:backgroundTint="#BFD6D6"
+    tools:context=".CrearUniversidad">
+
+    <TextView
+        android:id="@+id/titulo_crear_universidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Crear Universidad"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ingresar_nombre_universidad"
+        android:layout_width="247dp"
+        android:layout_height="49dp"
+        android:ems="10"
+        android:hint="Ingresar nombre universidad"
+        android:inputType="text"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.19999999" />
+
+    <EditText
+        android:id="@+id/ingresar_ubicacion_universidad"
+        android:layout_width="261dp"
+        android:layout_height="54dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Ingresar ubicación universidad"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/ingresar_nombre_universidad"
+        app:layout_constraintStart_toStartOf="@+id/ingresar_nombre_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/ingresar_nombre_universidad" />
+
+    <EditText
+        android:id="@+id/ingresar_fecha_fundacion_universidad"
+        android:layout_width="266dp"
+        android:layout_height="52dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Fecha de fundación yyyy-MM-dd"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/ingresar_ubicacion_universidad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ingresar_ubicacion_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/ingresar_ubicacion_universidad" />
+
+    <EditText
+        android:id="@+id/ingresar_extension_campus_universidad"
+        android:layout_width="266dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Ingresar la extensión en m2"
+        android:inputType="number|numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/ingresar_fecha_fundacion_universidad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ingresar_fecha_fundacion_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/ingresar_fecha_fundacion_universidad" />
+
+    <Button
+        android:id="@+id/btn_aceptar_crear_universidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:text="Aceptar"
+        app:layout_constraintEnd_toEndOf="@+id/ingresar_extension_campus_universidad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/ingresar_extension_campus_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/ingresar_extension_campus_universidad" />
+
+    <Button
+        android:id="@+id/btn_cancelar_crear_universidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_aceptar_crear_universidad"
+        app:layout_constraintStart_toEndOf="@+id/btn_aceptar_crear_universidad"
+        app:layout_constraintTop_toTopOf="@+id/btn_aceptar_crear_universidad"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

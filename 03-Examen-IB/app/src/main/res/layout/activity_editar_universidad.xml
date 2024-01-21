@@ -2,8 +2,97 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cons_editar_universidad"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".editarUniversidad">
+    android:background="#BFD6D6"
+    android:backgroundTint="#BFD6D6"
+    tools:context=".EditarUniversidad">
+
+    <TextView
+        android:id="@+id/titulo_editar_universidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="EDITAR UNIVERSIDAD"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editar_nombre_universidad"
+        android:layout_width="261dp"
+        android:layout_height="58dp"
+        android:layout_marginTop="52dp"
+        android:ems="10"
+        android:hint="Ingresar nombre universidad"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/titulo_editar_universidad"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="@+id/titulo_editar_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/titulo_editar_universidad" />
+
+    <EditText
+        android:id="@+id/editar_ubicacion_universidad"
+        android:layout_width="262dp"
+        android:layout_height="56dp"
+        android:layout_marginTop="32dp"
+        android:ems="10"
+        android:hint="Ingresar ubicación universidad"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/editar_nombre_universidad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editar_nombre_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/editar_nombre_universidad" />
+
+    <EditText
+        android:id="@+id/editar_fecha_fundacion_universidad"
+        android:layout_width="267dp"
+        android:layout_height="51dp"
+        android:layout_marginTop="28dp"
+        android:ems="10"
+        android:hint="Fecha fundación yyyy-MM-dd"
+        android:inputType="text"
+        app:layout_constraintEnd_toEndOf="@+id/editar_ubicacion_universidad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editar_ubicacion_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/editar_ubicacion_universidad" />
+
+    <EditText
+        android:id="@+id/editar_extension_campus_universidad"
+        android:layout_width="267dp"
+        android:layout_height="49dp"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="Area Cobertura m2"
+        android:inputType="numberDecimal"
+        app:layout_constraintEnd_toEndOf="@+id/editar_fecha_fundacion_universidad"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editar_fecha_fundacion_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/editar_fecha_fundacion_universidad" />
+
+
+    <Button
+        android:id="@+id/btn_cancelar_editar_universidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:text="Cancelar"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_aceptar_editar_universidad"
+        app:layout_constraintStart_toEndOf="@+id/btn_aceptar_editar_universidad"
+        app:layout_constraintTop_toTopOf="@+id/btn_aceptar_editar_universidad"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/btn_aceptar_editar_universidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="92dp"
+        android:text="Aceptar"
+        app:layout_constraintEnd_toEndOf="@+id/editar_extension_campus_universidad"
+        app:layout_constraintHorizontal_bias="0.072"
+        app:layout_constraintStart_toStartOf="@+id/editar_extension_campus_universidad"
+        app:layout_constraintTop_toBottomOf="@+id/editar_extension_campus_universidad" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

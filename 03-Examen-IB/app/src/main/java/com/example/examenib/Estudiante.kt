@@ -1,6 +1,6 @@
 package com.example.examenib
 
-class BDDEstudiante (
+class Estudiante (
     var nombre: String,
     var edad: Int,
     var fechaIngreso: String,

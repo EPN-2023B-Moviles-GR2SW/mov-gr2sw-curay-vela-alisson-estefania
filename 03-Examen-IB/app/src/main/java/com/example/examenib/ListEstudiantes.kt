@@ -17,12 +17,12 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 
-class Estudiantes : AppCompatActivity() {
+class ListEstudiantes : AppCompatActivity() {
 
-    lateinit var adaptador: ArrayAdapter<BDDEstudiante>
+    lateinit var adaptador: ArrayAdapter<Estudiante>
 
-    companion object {
-        var array = arrayListOf<BDDEstudiante>()
+        companion object { // para tener propiedades estáticas compartidas entre instancias de la clase
+        var array = arrayListOf<Estudiante>()
         var posicionElementoEstudiantes = 0
     }
 
@@ -32,8 +32,11 @@ class Estudiantes : AppCompatActivity() {
         ) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 if (result.data != null) {
+
+                    // Obtener datos del intent
                     val data = result.data
-                    val nuevoEstudiante = BDDEstudiante(
+                    // nuevo estudiante utilizando los datos obtenidos
+                    val nuevoEstudiante = Estudiante(
                         data?.getStringExtra(
                             "nombreEstudiante").toString(),
                         data?.getIntExtra(
@@ -45,10 +48,11 @@ class Estudiantes : AppCompatActivity() {
                         data?.getDoubleExtra(
                             "promedioCalificacionesEstudiante",0.0).toString().toDouble()
                     )
+                    // agrega el nuevo estudiante a la lista de estudiantes de la universidad seleccionada
                     MainActivity.array[MainActivity.posicionElementoSeleccionado].listaEstudiantes.add(
                         nuevoEstudiante
                     )
-                    adaptador.notifyDataSetChanged()
+                    adaptador.notifyDataSetChanged() // notificar nuevos cambios
                 }
             }
         }
@@ -58,8 +62,10 @@ class Estudiantes : AppCompatActivity() {
         ) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
                 if (result.data != null) {
+                    // Acciones a realizar si la actividad se completó exitosamente
                     val data = result.data
-                    //Lógica para modificar los datos del arreglo
+                    //actualizar los atributos del estudiante en el
+                    // array con los valores devueltos por la actividad editar
                     array[posicionElementoEstudiantes].nombre =
                         data?.getStringExtra("nombreEstudiante").toString()
                     array[posicionElementoEstudiantes].edad =
@@ -71,10 +77,15 @@ class Estudiantes : AppCompatActivity() {
                     array[posicionElementoEstudiantes].promedioCalificaciones =
                         data?.getDoubleExtra("promedioCalificacionesEstudiante",0.0).toString().toDouble()
 
+                    // actualiza la lista de estudiantes en la universidad seleccionada
                     MainActivity.array[MainActivity.posicionElementoSeleccionado]
                         .listaEstudiantes[posicionElementoEstudiantes] =
                         array[posicionElementoEstudiantes]
+
+                    // Actualización del adaptador y notificación de cambios
                     adaptador.notifyDataSetChanged()
+
+                    // muestra mensaje de exito
                     mostrarSnackbar("Estudiante modificado exitosamente")
                 }
             }
@@ -82,9 +93,14 @@ class Estudiantes : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_gestionar_estudiantes)
+        setContentView(R.layout.activity_estudiantes)
 
+        //asigna a array el arreglo de estudiantes correspondiente
+        // a la posición del elemento seleccionado en la actividad principal (MainActivity).
         array = MainActivity.array[MainActivity.posicionElementoSeleccionado].listaEstudiantes
+
+        // crear un adaptador ArrayAdapter que utiliza el diseño predefinido
+        // android.R.layout.simple_list_item_1 para mostrar los elementos del array en la ListView.
 
         val listView = findViewById<ListView>(R.id.listv_estudiantes)
         adaptador = ArrayAdapter(
@@ -92,11 +108,11 @@ class Estudiantes : AppCompatActivity() {
             android.R.layout.simple_list_item_1,
             array
         )
-
+        //establece el adaptador en la ListView
         listView.adapter = adaptador
-        adaptador.notifyDataSetChanged()
+        adaptador.notifyDataSetChanged() // notificar cambios
 
-
+        //establece el texto del TextView con el nombre de la universidad
         val estudianteSeleccionado = findViewById<TextView>(R.id.txt_universidadEstudiante)
         estudianteSeleccionado.setText(MainActivity.array[MainActivity.posicionElementoSeleccionado].nombre)
 
@@ -110,7 +126,7 @@ class Estudiantes : AppCompatActivity() {
             .setOnClickListener {
                 finish()
             }
-        registerForContextMenu(listView)
+        registerForContextMenu(listView) // registra la ListView para que pueda mostrar un menú contextual
 
     }
 
@@ -123,14 +139,17 @@ class Estudiantes : AppCompatActivity() {
 
         val inflater = menuInflater
         inflater.inflate(R.menu.menu_estudiantes, menu)
+        //  información sobre el elemento seleccionado en el menú contextual
         val info = menuInfo as AdapterView.AdapterContextMenuInfo
         val posicion = info.position
+        // Almacenar la posición del elemento seleccionado en la propiedad estática
+        // posicionElementoEstudiantes de la clase actual
         posicionElementoEstudiantes = posicion
     }
 
     override fun onContextItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-            R.id.editar_estudiante -> {
+            R.id.editar_estudiante -> { // llama a la funcion
                 ActividadEditarEstudiante(
                     EditarEstudiante::class.java
                 )
@@ -144,13 +163,13 @@ class Estudiantes : AppCompatActivity() {
         }
     }
 
-    fun agregarEstudiante() {
+    fun agregarEstudiante() { // inicia la actividad para crear un nuevo estudiante
         ActividadCrearEstudiante(
             CrearEstudiante::class.java
         )
         adaptador.notifyDataSetChanged()
     }
-    fun EliminacionDialogo() {
+    fun EliminacionDialogo() { // diálogo para confirmación de eliminación
         val builder = AlertDialog.Builder(this)
         builder.setTitle("Desea eliminar")
         builder.setPositiveButton(
@@ -170,32 +189,6 @@ class Estudiantes : AppCompatActivity() {
         dialogo.show()
     }
 
-    fun obtenerInfo(
-        nombre: String,
-        edad: Int,
-        fechaIngreso: String,
-        estado: Boolean,
-        promedioCalificaciones: Double
-    ) {
-        //recibir info
-        val intentRecuperarParametros = Intent()
-        intentRecuperarParametros
-            .putExtra("nombreEstudiante", nombre)
-        intentRecuperarParametros
-            .putExtra("edadEstudiante", edad)
-        intentRecuperarParametros
-            .putExtra("fechaIngresoEstudiante", fechaIngreso)
-        intentRecuperarParametros
-            .putExtra("estadoEstudiante", estado)
-        intentRecuperarParametros
-            .putExtra("promedioCalificacionesEstudiante", promedioCalificaciones)
-        setResult(
-            RESULT_OK,
-            intentRecuperarParametros
-        )
-        finish()
-    }
-
     fun ActividadCrearEstudiante(
         clase: Class<*>
     ) {
@@ -206,8 +199,9 @@ class Estudiantes : AppCompatActivity() {
     fun ActividadEditarEstudiante(
         clase: Class<*>
     ) {
+        // Crear un Intent explícito para iniciar la actividad de edición
         val intentExplicito = Intent(this, clase)
-        //Enviar parámetros (solamente variables primitivas)
+        // Enviar parámetros a la actividad de edición
         intentExplicito.putExtra(
             "nombre", array[posicionElementoEstudiantes].nombre)
         intentExplicito.putExtra(
@@ -217,7 +211,7 @@ class Estudiantes : AppCompatActivity() {
         intentExplicito.putExtra(
             "estado", array[posicionElementoEstudiantes].estado)
         intentExplicito.putExtra(
-            "promedioCalificaiones", array[posicionElementoEstudiantes].promedioCalificaciones)
+            "promedioCalificaciones", array[posicionElementoEstudiantes].promedioCalificaciones)
 
         callbackContenidoIntentExplicito.launch(intentExplicito)
     }
