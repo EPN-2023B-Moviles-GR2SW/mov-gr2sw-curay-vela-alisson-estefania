@@ -7,6 +7,7 @@ import android.util.Log
 import android.widget.Button
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.PackageManagerCompat
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.SupportMapFragment
@@ -18,8 +19,7 @@ import com.google.android.gms.maps.model.PolylineOptions
 import com.google.android.material.snackbar.Snackbar
 
 class GGoogleMapsActivity : AppCompatActivity() {
-
-    private lateinit var mapa: GoogleMap
+    private lateinit var  mapa: GoogleMap
     var permisos = false
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,7 @@ class GGoogleMapsActivity : AppCompatActivity() {
         boton.setOnClickListener {
             irCarolina()
         }
-    } // Finaliza el one create
+    }
 
     fun irCarolina(){
         val carolina = LatLng(-0.1825684318486696,
@@ -39,100 +39,74 @@ class GGoogleMapsActivity : AppCompatActivity() {
         moverCamaraConZoom(carolina, zoom)
     }
 
-    fun mostrarSnackbar(texto:String){
-        Snackbar.make(
-            findViewById(R.id.cl_google_maps), // view
-            texto, // texto
-            Snackbar.LENGTH_LONG // tiempo
-        )
-            .show()
-    }
-
-    fun solicitarPermisos(){
-        val contexto = this.application
-        val nombrePermiso = android.Manifest.permission.ACCESS_FINE_LOCATION
-        val nombrePermisoCoarse = android.Manifest.permission.ACCESS_COARSE_LOCATION
-        val permisosFineLocation = ContextCompat.checkSelfPermission(
-            contexto,
-            //permiso que va a chekear
-            nombrePermiso
-        )
-        val tienePermisos = permisosFineLocation == PackageManager.PERMISSION_GRANTED
-        if (tienePermisos){
-            permisos = true
-        } else {
-            ActivityCompat.requestPermissions(
-                this, // contexto
-                arrayOf(
-                    nombrePermiso, nombrePermisoCoarse
-                ),
-                1 // codigo de peticion de los permisos
+    fun mostrarSnackbar(texto: String){
+        Snackbar
+            .make(
+                findViewById(R.id.cl_google_maps),
+                texto,
+                Snackbar.LENGTH_LONG //Tiempo
             )
-        }
     }
-    fun iniciarLogicaMapa() {
-        val fragmentoMapa = supportFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-        fragmentoMapa.getMapAsync { googleMap ->
-            //with(X) -> if(X != null)
+    fun iniciarLogicaMapa(){
+        val fragmentoMapa = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        fragmentoMapa.getMapAsync {googleMap ->
+            // with(X) => if (X != mull)
             with(googleMap){
                 mapa = googleMap
-                establecerConfiguracionMapa()
+                establecerConfiguracionesMapa()
                 moverQuicentro()
-                anadirPoliLinea()
+                anadirPolilinea()
                 anadirPoligono()
                 escucharListeners()
             }
-
         }
     }
 
     fun escucharListeners(){
         mapa.setOnPolygonClickListener {
             mostrarSnackbar("setOnPolygonClickListener ${it.tag}")
+            it.tag //ID
         }
         mapa.setOnPolylineClickListener {
             mostrarSnackbar("setOnPolylineClickListener ${it.tag}")
-            it.tag
+            it.tag //ID
         }
-
         mapa.setOnMarkerClickListener {
-            mostrarSnackbar("setOnPolygonClickListener ${it.tag}")
+            mostrarSnackbar("setOnMArkerClickListener ${it.tag}")
             it.tag
             return@setOnMarkerClickListener true
         }
-
         mapa.setOnCameraMoveListener {
-           Log.i("mapa", "setOnPolygonClickListener")
-
+            Log.i("mapa", "setOnCameraMoveListener")
         }
         mapa.setOnCameraMoveStartedListener {
-            Log.i("mapa", "setOnPolygonClickListener")
-
+            Log.i("mapa", "setOnCameraMoveStartedListener ${it}")
         }
         mapa.setOnCameraIdleListener {
-            Log.i("mapa", "setOnPolygonClickListener")
-
+            Log.i("mapa", "setOnCameraIdleListener")
         }
 
     }
 
-    fun anadirPoliLinea(){
-
+    fun anadirPolilinea(){
         with(mapa){
-            val poliLineaUno = mapa.addPolyline(
-                PolylineOptions().clickable(true).add(
-                    LatLng(-0.1759187040647396,
-                        -78.48506472421384),
-                    LatLng(-0.17632468492901104,
-                        -78.48265589308046),
-                    LatLng(-0.17746143130181483,
-                        -78.4770533307815)
+            val poliLineaUno = mapa
+                .addPolyline(
+                    PolylineOptions()
+                        .clickable(true)
+                        .add(
+                            LatLng(-0.1759187040647396,
+                                -78.48506472421384),
+                            LatLng(-0.17632468492901104,
+                                -78.48265589308046),
+                            LatLng(-0.17746143130181483,
+                                -78.4770533307815)
+                        )
                 )
-            )
             poliLineaUno.tag = "linea-1" // <- ID
         }
     }
-
     fun anadirPoligono(){
         with(mapa){
             //POLIGONO
@@ -149,54 +123,73 @@ class GGoogleMapsActivity : AppCompatActivity() {
                                 -78.48142892291516)
                         )
                 )
-            poligonoUno.fillColor = -0xc77c4
-            poligonoUno.tag = "poligono-2" // <- ID
+            poligonoUno.fillColor = -0xc771c4
+            poligonoUno.tag = "poligono-2" // <-ID
         }
     }
-
-
-
     fun moverQuicentro(){
         val zoom = 17f
         val quicentro = LatLng(
-            -0.17556708490271092, 78.48014901143776
+            -0.17556708490271092, -78.48014901143776
         )
         val titulo = "Quicentro"
         val markQuicentro = anadirMarcador(
             quicentro, titulo)
         markQuicentro.tag = titulo
         moverCamaraConZoom(quicentro, zoom)
-    }
 
-    fun anadirMarcador(latLng: LatLng, title:String): Marker {
+    }
+    fun anadirMarcador(latLng: LatLng, title: String): Marker {
         return mapa.addMarker(
-            MarkerOptions().position(latLng).title(title)
+            MarkerOptions()
+                .position(latLng)
+                .title(title)
         )!!
     }
 
-    fun moverCamaraConZoom (latLng: LatLng, zoom:Float = 10f){
+    fun moverCamaraConZoom(latLng: LatLng, zoom: Float = 10f){
         mapa.moveCamera(
             CameraUpdateFactory.newLatLngZoom(latLng, zoom)
         )
-
     }
-
-
-
-
-    fun establecerConfiguracionMapa(){
+    fun establecerConfiguracionesMapa(){
         val contexto = this.applicationContext
         with(mapa){
-           val permisosFineLocation = ContextCompat.checkSelfPermission(
-               contexto,
-               android.Manifest.permission.ACCESS_FINE_LOCATION
-           )
-            val tienePermisos = permisosFineLocation == PackageManager.PERMISSION_GRANTED
-            if(tienePermisos){
-                mapa.isMyLocationEnabled = true // tiene permisos
+            val permisosFineLocation = ContextCompat
+                .checkSelfPermission(
+                    contexto,
+                    android.Manifest.permission.ACCESS_FINE_LOCATION
+                )
+            val tienePermisos = permisosFineLocation ==
+                    PackageManager.PERMISSION_GRANTED
+            if (tienePermisos){
+                mapa.isMyLocationEnabled = true //Tenemos permisos
                 uiSettings.isMyLocationButtonEnabled = true
             }
-            uiSettings.isZoomControlsEnabled = true //defecto
+            uiSettings.isZoomControlsEnabled = true
+        }
+    }
+    fun solicitarPermisos(){
+        val contexto = this.applicationContext
+        val nombrePermiso = android.Manifest.permission.ACCESS_FINE_LOCATION
+        val nombrePermisoCoarse = android.Manifest.permission.ACCESS_COARSE_LOCATION
+        val permisosFineLocation = ContextCompat
+            .checkSelfPermission(
+                contexto,
+                //permiso de permiso
+                nombrePermiso
+            )
+        val tienePermisos = permisosFineLocation == PackageManager.PERMISSION_GRANTED
+        if(tienePermisos){
+            permisos = true
+        }else {
+            ActivityCompat.requestPermissions(
+                this,
+                arrayOf(
+                    nombrePermiso,nombrePermisoCoarse
+                ),
+                1
+            )
         }
     }
 }

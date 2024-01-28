@@ -16,11 +16,10 @@ class FRecyclerView : AppCompatActivity() {
     fun inicializarRecyclerView(){
         val recyclerView = findViewById<RecyclerView>(R.id.rv_entrenadores)
         val adaptador = FRecyclerViewAdaptadorNombreDescripcion(
-            this, //contexto
-            BBaseDatosMemoria.arregloBEntrenador, // Arreglo o datos
-            recyclerView //RecuclerView
+            this, //Contexto
+            BBaseDatosMemoria.arregloBEntrenador, //Arreglo datos
+            recyclerView //recyclerView
         )
-
         recyclerView.adapter = adaptador
         recyclerView.itemAnimator = androidx.recyclerview.widget.DefaultItemAnimator()
         recyclerView.layoutManager = androidx.recyclerview.widget.LinearLayoutManager(this)
@@ -29,7 +28,9 @@ class FRecyclerView : AppCompatActivity() {
 
     fun aumentarTotalLikes(){
         totalLikes = totalLikes + 1
-        val totalLikesTextView = findViewById<TextView>(R.id.tv_total_likes)
+        val totalLikesTextView = findViewById<TextView>(
+            R.id.tv_total_likes
+        )
         totalLikesTextView.text = totalLikes.toString()
     }
 }
