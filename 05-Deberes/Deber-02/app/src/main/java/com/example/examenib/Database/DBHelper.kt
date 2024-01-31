@@ -1,4 +1,4 @@
-package com.example.examenib
+package com.example.examenib.Database
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase

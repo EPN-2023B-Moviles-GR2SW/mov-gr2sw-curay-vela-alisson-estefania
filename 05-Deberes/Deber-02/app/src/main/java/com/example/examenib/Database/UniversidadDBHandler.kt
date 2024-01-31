@@ -1,9 +1,10 @@
-package com.example.examenib
+package com.example.examenib.Database
 
 import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.Cursor
+import com.example.examenib.Universidad
 
 class UniversidadDBHandler(context: Context) {
 
