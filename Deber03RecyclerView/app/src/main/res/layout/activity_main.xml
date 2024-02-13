@@ -5,8 +5,8 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <view class="androidx.appcompat.app.AlertController$RecycleListView"
-        android:id="@+id/recyclreDiscordMessages"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDiscordMessages"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

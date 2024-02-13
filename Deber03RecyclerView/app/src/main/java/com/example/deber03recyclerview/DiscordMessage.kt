@@ -1,6 +1,6 @@
 package com.example.deber03recyclerview
 
-data class DiscordMessages (
+data class DiscordMessage (
     val senderName:String,
     val message:String,
     val days:String,
