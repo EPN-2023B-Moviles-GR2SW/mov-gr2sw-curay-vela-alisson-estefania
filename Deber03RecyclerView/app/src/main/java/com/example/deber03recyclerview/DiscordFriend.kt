@@ -1,4 +1,5 @@
 package com.example.deber03recyclerview
 
-class DiscordFriend {
-}
+data class DiscordFriend (
+    val profilePhoto:String
+)

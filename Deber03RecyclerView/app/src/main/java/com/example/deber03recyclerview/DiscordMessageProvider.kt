@@ -62,7 +62,31 @@ class DiscordMessageProvider {
                 "Tú: me recomiendas un libro?",
                 "23 días",
                 "https://i.pinimg.com/236x/a8/e1/47/a8e1477761bfc2689ec65d6653d2aeb4.jpg"
-            )
+            ),
+            DiscordMessage(
+                    "Itzii98",
+            "Tú: jugamos fall?",
+            "ayer",
+            "https://i.pinimg.com/550x/8e/8f/17/8e8f175936754b2950692addd5da3638.jpg"
+            ),
+            DiscordMessage(
+                "ivoneverus",
+                "ivoneverus: terminaste el deber de móviles?",
+                "1 días",
+                "https://emoji.discadia.com/emojis/c16da28d-6e42-447d-8b9a-ec74acc0a95d.jpg"
+            ),
+            DiscordMessage(
+                "Alicita",
+                "Alicita: vamos a jugar con los chicos?",
+                "10 días",
+                "https://i.redd.it/jdi8ekmabda61.png"
+            ),
+            DiscordMessage(
+                "BingMeth",
+                "Tú: si logré recuperar mi clave",
+                "18 días",
+                "https://content.wepik.com/statics/262906781/conversions/preview-page0-thumb.jpg"
+            ),
         )
     }
 }

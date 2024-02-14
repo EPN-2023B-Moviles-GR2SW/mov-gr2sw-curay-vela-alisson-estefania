@@ -18,7 +18,6 @@ class DiscordMessageAdapter(private val discordmessagelist:List<DiscordMessage>)
         //pasar por cada item para llamar al render
         val item = discordmessagelist[position]
         holder.render(item)
-
     }
     override fun getItemCount(): Int {
         return discordmessagelist.size

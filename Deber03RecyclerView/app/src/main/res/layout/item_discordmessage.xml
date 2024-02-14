@@ -11,26 +11,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="#FFFFFF"
-        android:backgroundTint="#FCF5FF"
+        android:backgroundTint="@color/black"
         android:foregroundTint="#FFFFFF">
 
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/ivDiscordMessage"
-            android:layout_width="75dp"
-            android:layout_height="75dp"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:background="@color/black" />
+            tools:background="@color/black"
+            android:padding="5dp"/>
 
         <TextView
             android:id="@+id/tvDiscordMessageSender"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
+            android:textColor="@color/bottom_nav_item"
             app:layout_constraintBottom_toBottomOf="@+id/ivDiscordMessage"
             app:layout_constraintStart_toEndOf="@+id/ivDiscordMessage"
             app:layout_constraintTop_toTopOf="parent"
@@ -42,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="232dp"
+            android:textColor="@color/bottom_nav_item"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.724"
@@ -52,6 +55,7 @@
 
         <TextView
             android:id="@+id/tvDiscordMessagemessages"
+            android:textColor="@color/bottom_nav_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
