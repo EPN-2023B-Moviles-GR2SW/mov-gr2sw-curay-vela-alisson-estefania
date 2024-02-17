@@ -4,7 +4,8 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="bottom_nav_background">#2C2A2A</color>
-    <color name="bottom_nav_item">#9A9696</color>
+    <color name="bottom_nav_item">#96979A</color>
     <color name="bottom_nav_selected_item">#FFFFFF</color>
+    <color name="bottom_nav">#424447</color>
 
 </resources>

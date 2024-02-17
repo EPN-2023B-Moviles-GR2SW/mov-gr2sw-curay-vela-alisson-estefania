@@ -7,16 +7,55 @@
     android:background="@color/black"
     tools:context=".MainActivity">
 
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="374dp"
+        android:layout_height="37dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/search_view_background"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerDiscordFriend"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintStart_toStartOf="@+id/tv_mensasge"
+        app:layout_constraintTop_toBottomOf="@+id/tv_mensasge">
+
+        <!-- Agrega un EditText con un LinearLayout para el texto adicional -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <!-- Agrega el TextView como hint -->
+            <EditText
+                android:id="@+id/searchFriends"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="8dp"
+                android:background="@android:color/transparent"
+                android:drawableStart="@drawable/search"
+                android:drawableLeft="@drawable/search"
+                android:drawablePadding="10dp"
+                android:hint="Buscar"
+                android:scrollbarThumbHorizontal="@drawable/search"
+                android:scrollbarThumbVertical="@drawable/search"
+                android:singleLine="true"
+                android:textColorHint="@color/bottom_nav_item"
+                android:textSize="10dp" />
+        </LinearLayout>
+    </RelativeLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDiscordMessages"
-        android:layout_width="411dp"
-        android:layout_height="478dp"
+        android:layout_width="409dp"
+        android:layout_height="457dp"
         app:barrierMargin="10dp"
         app:circularflow_angles="10dp"
         app:circularflow_radiusInDP="10dp"
         app:layout_constraintBottom_toTopOf="@+id/bottonNavigate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0"
@@ -26,7 +65,7 @@
         android:id="@+id/bottonNavigate"
         android:layout_width="411dp"
         android:layout_height="66dp"
-        android:background="@color/bottom_nav_background"
+        android:background="#111112"
         app:itemActiveIndicatorStyle="@color/white"
         app:itemIconTint="@drawable/nav_colors"
         app:itemTextColor="@drawable/nav_colors"
@@ -58,51 +97,64 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
-        android:layout_width="368dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="12dp"
+        android:id="@+id/rl_add_friends"
+        android:layout_width="150dp"
+        android:layout_height="35dp"
         android:background="@drawable/search_view_background"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.301"
+        app:layout_constraintHorizontal_bias="0.93"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tv_mensasge">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.02">
 
         <!-- Agrega un EditText con un LinearLayout para el texto adicional -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:gravity="center_vertical">
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <!-- Agrega el TextView como hint -->
             <EditText
-                android:id="@+id/searchEditText"
+                android:id="@+id/addFriends"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="8dp"
                 android:background="@android:color/transparent"
-                android:hint="Buscar"
-                android:textColorHint="@color/bottom_nav_item"
-                android:textSize="10dp"
-                android:scrollbarThumbHorizontal="@drawable/search"
-                android:scrollbarThumbVertical="@drawable/search"
-                android:drawableLeft="@drawable/search"
-                android:drawableStart="@drawable/search"
+                android:drawableStart="@drawable/incorporation"
+                android:drawableLeft="@drawable/incorporation"
                 android:drawablePadding="10dp"
-                android:singleLine="true"/>
+                android:hint="Añadir amigos"
+                android:scrollbarThumbHorizontal="@drawable/incorporation"
+                android:scrollbarThumbVertical="@drawable/incorporation"
+                android:singleLine="true"
+                android:textColorHint="@color/bottom_nav_selected_item"
+                android:textSize="15dp" />
         </LinearLayout>
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDiscordFriend"
-        android:layout_width="382dp"
-        android:layout_height="68dp"
-        android:layout_marginTop="104dp"
+        android:layout_width="398dp"
+        android:layout_height="111dp"
+        android:layout_marginTop="124dp"
+        android:background="@color/black"
+        android:scrollbarThumbHorizontal="@color/black"
         android:scrollbars="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.267"
+        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/bottom_nav_item"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/textInputLayout"
+        android:layout_width="306dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </com.google.android.material.textfield.TextInputLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

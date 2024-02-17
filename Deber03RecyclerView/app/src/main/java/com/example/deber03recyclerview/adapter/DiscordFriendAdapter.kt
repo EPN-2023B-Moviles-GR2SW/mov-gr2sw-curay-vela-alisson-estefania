@@ -23,6 +23,5 @@ class DiscordFriendAdapter(private val discordfriendlist:List<DiscordFriend>) : 
         //pasar por cada item para llamar al render
         val itemDiscordFriend = discordfriendlist[position]
         holder.render(itemDiscordFriend)
-
     }
 }
