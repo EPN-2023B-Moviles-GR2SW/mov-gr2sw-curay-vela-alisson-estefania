@@ -35,15 +35,10 @@ class MainActivity : AppCompatActivity() {
                     //Se actualizan los campos de la universidad seleccionada en el arreglo
                     // array con los valores proporcionados por la actividad.
                     // Estos valores son extraídos del Intent
-                    array[posicionElementoSeleccionado].nombre = data?.
-                    getStringExtra("nombreModificado").toString()
-                    array[posicionElementoSeleccionado].ubicacion = data?.
-                    getStringExtra("ubicacionModificada").toString()
-                    array[posicionElementoSeleccionado].fechaFundacion = data?.
-                    getStringExtra("fechaFundacionModificada").toString()
-                    array[posicionElementoSeleccionado].areaCobertura = data?.
-                    getDoubleExtra("areaCoberturaModificada",0.0).
-                    toString().toDouble()
+                    array[posicionElementoSeleccionado].nombre = data?.getStringExtra("nombreModificado").toString()
+                    array[posicionElementoSeleccionado].ubicacion = data?.getStringExtra("ubicacionModificada").toString()
+                    array[posicionElementoSeleccionado].fechaFundacion = data?.getStringExtra("fechaFundacionModificada").toString()
+                    array[posicionElementoSeleccionado].areaCobertura = data?.getDoubleExtra("areaCoberturaModificada",0.0).toString().toDouble()
                     adaptador.notifyDataSetChanged()
                     mostrarSnackbar("Universidad modificada exitosamente")
                 }
